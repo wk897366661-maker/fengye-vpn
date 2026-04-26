@@ -1,0 +1,24 @@
+steps:
+  - name: Checkout
+    uses: actions/checkout@v4
+
+  - name: Unzip Source
+    run: unzip fengye-vpn-source.zip -d app
+
+  - name: Setup Java
+    uses: actions/setup-java@v4
+    with:
+      distribution: temurin
+      java-version: 17
+
+  - name: Build APK
+    run: |
+      cd app
+      chmod +x gradlew
+      ./gradlew assembleDebug
+
+  - name: Upload APK
+    uses: actions/upload-artifact@v4
+    with:
+      name: fengye-vpn-apk
+      path: app/app/build/outputs/apk/debug/*.apk
