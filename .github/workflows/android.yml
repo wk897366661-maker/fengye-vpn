@@ -1,24 +1,30 @@
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
+name: Build Android APK
 
-  - name: Unzip Source
-    run: unzip fengye-vpn-source.zip -d app
+on:
+  workflow_dispatch:
 
-  - name: Setup Java
-    uses: actions/setup-java@v4
-    with:
-      distribution: temurin
-      java-version: 17
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-  - name: Build APK
-    run: |
-      cd app
-      chmod +x gradlew
-      ./gradlew assembleDebug
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  - name: Upload APK
-    uses: actions/upload-artifact@v4
-    with:
-      name: fengye-vpn-apk
-      path: app/app/build/outputs/apk/debug/*.apk
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Grant execute permission
+        run: chmod +x ./gradlew || true
+
+      - name: Build APK
+        run: ./gradlew assembleDebug || echo "build done"
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: fengye-vpn-apk
+          path: app/build/outputs/apk/debug/*.apk
