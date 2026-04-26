@@ -1,6 +1,4 @@
 <resources>
-
-    <style name="Theme.FengyeVpn" parent="@android:style/Theme.Light.NoTitleBar">
+    <style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar">
     </style>
-
 </resources>
