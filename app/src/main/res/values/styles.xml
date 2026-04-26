@@ -1,7 +1,6 @@
 <resources>
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:statusBarColor">#061A3A</item>
-        <item name="android:navigationBarColor">#061A3A</item>
+
+    <style name="Theme.FengyeVpn" parent="@android:style/Theme.Light.NoTitleBar">
     </style>
+
 </resources>
