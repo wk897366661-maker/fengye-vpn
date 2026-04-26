@@ -3,7 +3,6 @@ package com.fengye.vpn;
 import android.app.Activity;
 import android.os.Bundle;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,74 +11,78 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    boolean connected = true;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
-        root.setPadding(40, 60, 40, 40);
-        root.setGravity(Gravity.CENTER_HORIZONTAL);
+        root.setPadding(50, 80, 50, 50);
         root.setBackgroundColor(Color.rgb(6, 26, 58));
 
         TextView title = new TextView(this);
-        title.setText("枫叶 VPN");
-        title.setTextSize(34);
+        title.setText("🍁 枫叶 VPN");
+        title.setTextSize(32);
         title.setTextColor(Color.WHITE);
         title.setGravity(Gravity.CENTER);
 
-        TextView status = new TextView(this);
-        status.setText("● 已连接");
-        status.setTextSize(16);
-        status.setTextColor(Color.rgb(20, 210, 230));
-        status.setGravity(Gravity.CENTER);
-        status.setPadding(0, 20, 0, 70);
+        TextView sub = new TextView(this);
+        sub.setText("VIP 专线 · 安全放心");
+        sub.setTextSize(18);
+        sub.setTextColor(Color.rgb(120, 183, 255));
+        sub.setPadding(0, 20, 0, 50);
 
-        Button power = new Button(this);
-        power.setText("⏻");
-        power.setTextSize(54);
-        power.setTextColor(Color.rgb(20, 210, 230));
+        TextView packageTitle = new TextView(this);
+        packageTitle.setText("套餐中心");
+        packageTitle.setTextSize(24);
+        packageTitle.setTextColor(Color.WHITE);
 
-        GradientDrawable powerBg = new GradientDrawable();
-        powerBg.setShape(GradientDrawable.OVAL);
-        powerBg.setColor(Color.rgb(8, 36, 48));
-        powerBg.setStroke(6, Color.rgb(20, 180, 210));
-        power.setBackground(powerBg);
+        TextView month = new TextView(this);
+        month.setText("月卡套餐   ¥19.9   /   300G");
+        month.setTextSize(20);
+        month.setTextColor(Color.WHITE);
+        month.setPadding(0, 40, 0, 20);
 
-        LinearLayout.LayoutParams powerParams = new LinearLayout.LayoutParams(300, 300);
-        power.setLayoutParams(powerParams);
+        TextView season = new TextView(this);
+        season.setText("季卡套餐   ¥49.9   /   900G");
+        season.setTextSize(20);
+        season.setTextColor(Color.WHITE);
+        season.setPadding(0, 20, 0, 20);
 
-        power.setOnClickListener(v -> {
-            connected = !connected;
-            if (connected) {
-                status.setText("● 已连接");
-                Toast.makeText(this, "枫叶 VPN 已连接", Toast.LENGTH_SHORT).show();
-            } else {
-                status.setText("● 未连接");
-                Toast.makeText(this, "已断开连接", Toast.LENGTH_SHORT).show();
-            }
-        });
+        TextView year = new TextView(this);
+        year.setText("年卡套餐   ¥169   /   3600G");
+        year.setTextSize(20);
+        year.setTextColor(Color.WHITE);
+        year.setPadding(0, 20, 0, 50);
 
-        TextView node = new TextView(this);
-        node.setText("\n当前节点\n🇯🇵 日本 01  ›");
-        node.setTextSize(22);
-        node.setTextColor(Color.WHITE);
-        node.setGravity(Gravity.CENTER);
-        node.setPadding(0, 80, 0, 80);
+        Button buyBtn = new Button(this);
+        buyBtn.setText("立即购买");
+        buyBtn.setTextSize(20);
+        buyBtn.setOnClickListener(v ->
+                Toast.makeText(this, "联系客服购买套餐", Toast.LENGTH_LONG).show()
+        );
+
+        Button serviceBtn = new Button(this);
+        serviceBtn.setText("联系客服");
+        serviceBtn.setTextSize(20);
+        serviceBtn.setOnClickListener(v ->
+                Toast.makeText(this, "客服微信：fengyevpn", Toast.LENGTH_LONG).show()
+        );
 
         TextView bottom = new TextView(this);
-        bottom.setText("首页          商城          我的");
-        bottom.setTextSize(20);
+        bottom.setText("\n首页        商城        我的");
+        bottom.setTextSize(18);
         bottom.setTextColor(Color.rgb(20, 210, 230));
         bottom.setGravity(Gravity.CENTER);
-        bottom.setPadding(0, 80, 0, 0);
 
         root.addView(title);
-        root.addView(status);
-        root.addView(power);
-        root.addView(node);
+        root.addView(sub);
+        root.addView(packageTitle);
+        root.addView(month);
+        root.addView(season);
+        root.addView(year);
+        root.addView(buyBtn);
+        root.addView(serviceBtn);
         root.addView(bottom);
 
         setContentView(root);
